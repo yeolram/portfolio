@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  
+  /* Apple & Custom Design Tokens */
+  --color-primary: #0066cc;
+  --color-primary-focus: #071e3;
+  --color-primary-on-dark: #2997ff;
+  
+  --color-canvas-white: #ffffff;
+  --color-canvas-parchment: #f5f5f7;
+  --color-surface-tile-1: #272729;
+  --color-surface-tile-2: #2a2a2c;
+  --color-ink: #1d1d1f;
+  --color-ink-muted-80: #333333;
+  --color-ink-muted-48: #7a7a7a;
+
+  --spacing-section: 80px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased text-ink bg-canvas-white;
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.022em; /* Apple's default body tracking for 17px */
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold;
+    letter-spacing: -0.015em; /* Closer to the 'Apple tight' look on Inter */
+  }
+}
+
+@layer components {
+  .apple-pill-button {
+    @apply rounded-full px-[22px] py-[11px] font-normal transition-all active:scale-95 text-[17px];
+  }
+  
+  .apple-pill-primary {
+    @apply rounded-full px-[22px] py-[11px] font-normal transition-all active:scale-95 text-[17px] bg-primary text-white hover:opacity-90;
+  }
+
+  .apple-pill-secondary {
+    @apply rounded-full px-[22px] py-[11px] font-normal transition-all active:scale-95 text-[17px] border border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .nav-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-black/5 rounded-full px-3 py-1 flex items-center shadow-sm;
+  }
+
+  .nav-link-item {
+    @apply relative px-3 py-1.5 text-[13px] font-medium text-ink/70 hover:text-primary transition-colors cursor-pointer;
+  }
+
+  .nav-link-item::after {
+    content: "";
+    @apply absolute left-1/2 bottom-[4px] w-0 h-[2px] bg-primary transition-all duration-300 -translate-x-1/2;
+  }
+
+  .nav-link-item:hover::after {
+    @apply w-[60%];
+  }
+
+  .accent-button {
+    @apply border border-primary/30 bg-primary/5 text-primary font-semibold px-4 py-1.5 rounded-full text-[12px] flex items-center gap-2 hover:bg-primary/10 active:scale-95 transition-all;
+  }
+
+  /* Designer Tool Logo Styles */
+  .logo-handle {
+    @apply absolute w-1.5 h-1.5 bg-white border border-ink;
+  }
+}
